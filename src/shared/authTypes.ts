@@ -1,16 +1,9 @@
 export type User = {
   _id: string;
   token: string;
-  email: {
-    type: string;
-    unique: true;
-  };
-  password: {
-    type: string;
-  };
-  name: {
-    type: string;
-  };
+  email: string;
+  password: string;
+  name: string;
 };
 
 export type AuthAction = { type: "LOGIN"; payload: User } | { type: "LOGOUT" };
