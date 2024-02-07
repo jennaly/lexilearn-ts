@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 
-type FavoriteWord = {
+export type FavoriteWord = {
   _id: string;
   term: string;
   definitions: string[];
@@ -9,17 +9,17 @@ type FavoriteWord = {
   user: string;
 };
 
-type FavoriteWordsState = {
+export type FavoriteWordsState = {
   favoriteWords: FavoriteWord[];
 };
 
-type Action =
+export type FavoriteWordsAction =
   | { type: "GET_FAVORITE_WORDS"; payload: FavoriteWord[] }
   | { type: "CREATE_FAVORITE_WORD"; payload: FavoriteWord }
   | { type: "DELETE_FAVORITE_WORD"; payload: FavoriteWord };
 
-type FavoriteWordsContextType = FavoriteWordsState & {
-  dispatch: React.Dispatch<Action>;
+export type FavoriteWordsContextType = FavoriteWordsState & {
+  dispatch: React.Dispatch<FavoriteWordsAction>;
 };
 
 export const FavoriteWordsContext = createContext<FavoriteWordsContextType>({
@@ -29,7 +29,7 @@ export const FavoriteWordsContext = createContext<FavoriteWordsContextType>({
 
 export const favoriteWordsReducer = (
   state: FavoriteWordsState,
-  action: Action
+  action: FavoriteWordsAction
 ) => {
   switch (action.type) {
     case "GET_FAVORITE_WORDS":
