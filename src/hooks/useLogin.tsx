@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAuthContext } from "../hooks/useAuthContext";
+import { useAuthContext } from "./useAuthContext";
 
 type LoginResult = {
   login: (email: string, password: string) => Promise<void>;
