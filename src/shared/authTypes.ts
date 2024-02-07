@@ -2,17 +2,14 @@ export type User = {
   _id: string;
   token: string;
   email: {
-    type: String;
-    required: true;
+    type: string;
     unique: true;
   };
   password: {
-    type: String;
-    required: true;
+    type: string;
   };
   name: {
-    type: String;
-    required: true;
+    type: string;
   };
 };
 
