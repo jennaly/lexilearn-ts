@@ -18,7 +18,7 @@ export type User = {
 export type AuthAction = { type: "LOGIN"; payload: User } | { type: "LOGOUT" };
 
 export type AuthContextType = {
-  user: User | null;
+  user?: User;
   state: AuthState;
   dispatch: React.Dispatch<AuthAction>;
 };
