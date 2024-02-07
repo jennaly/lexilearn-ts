@@ -5,6 +5,7 @@ type WordDefinition = {
   type?: string;
   image_url?: string;
   example?: string;
+  emoji?: any;
 };
 
 type WordData = {
