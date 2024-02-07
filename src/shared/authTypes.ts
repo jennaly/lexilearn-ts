@@ -1,5 +1,6 @@
 export type User = {
   _id: string;
+  token: string;
   email: {
     type: String;
     required: true;
