@@ -1,12 +1,13 @@
 import React, { createContext, useReducer } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { User } from "@/shared/authTypes";
 
 export type FavoriteWord = {
   _id: string;
   term: string;
   definitions: string[];
   difficulty?: number;
-  user: string;
+  user?: User;
 };
 
 export type FavoriteWordsState = {
@@ -66,7 +67,7 @@ export const FavoriteWordsContextProvider = ({
 
   const initialState: FavoriteWord[] = user
     ? []
-    : favoriteWordsFromLocalStorage || [];
+    : favoriteWordsFromLocalStorage;
 
   const [state, dispatch] = useReducer(favoriteWordsReducer, {
     favoriteWords: initialState,
