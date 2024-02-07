@@ -94,7 +94,6 @@ const Card = () => {
     addWordToDB();
   };
 
-  // unfavorite/removes a word from the study set
   const removeWordFromFavorites = () => {
     const deletedWord = favoriteWords.find(
       (favoriteWord) => favoriteWord.term == wordData?.word
@@ -102,7 +101,6 @@ const Card = () => {
 
     if (!deletedWord) return;
 
-    // if the user is logged in, send a post request to the server to remove the word from the database
     if (user) {
       const removeWordFromDB = async () => {
         const { _id } = deletedWord;
@@ -112,7 +110,6 @@ const Card = () => {
           {
             method: "DELETE",
             headers: {
-              // sends the JSON web token to the server to make authorized requests
               Authorization: `Bearer ${user.token}`,
             },
           }
@@ -120,8 +117,6 @@ const Card = () => {
 
         const data = await res.json();
 
-        // if the word has been successfully removed from the database,
-        // the favoriteWords state will be updated to remove the word
         if (res.ok) {
           dispatch({ type: "DELETE_FAVORITE_WORD", payload: data });
         }
@@ -129,7 +124,6 @@ const Card = () => {
 
       removeWordFromDB();
     } else {
-      // if the user is not logged in: favoriteWords state and localStorage are updated
       dispatch({ type: "DELETE_FAVORITE_WORD", payload: deletedWord });
     }
   };
@@ -137,7 +131,6 @@ const Card = () => {
   return (
     <div className="max-w-sm mb-4 lg:max-w-xl mx-auto card bg-base-100 shadow-xl lg:h-[375px] p-5">
       <div className="flex flex-col lg:flex-row justify-between items-center">
-        {/* renders the data returned by owlbot, if the word exists in their database*/}
         {wordData && wordData.definitions && (
           <div className="card-title font-fredoka-one text-4xl lg:text-5xl underline-offset-14 w-full pb-1 lg:pb-4 lg:mr-6 border-b-2 border-yellow-700 text-yellow-700">
             <div className="w-full flex gap-2 ">
@@ -154,14 +147,12 @@ const Card = () => {
               className="flex items-center uppercase font-gaegu text-lg tooltip bg-base-100 outline-0 focus:outline-0 focus-visible:outline-0 hover:border-0"
               data-tip="Save your favorite words to your study set"
             >
-              {/* if word is already in the study set, display the star icon filled */}
               {isFavorite && (
                 <AiFillStar
                   style={{ width: "40px", height: "40px", color: "#EBD678" }}
                 />
               )}
 
-              {/* otherwise, display the star icon outline */}
               {!isFavorite && (
                 <AiOutlineStar
                   style={{ width: "40px", height: "40px", color: "#EBD678" }}
