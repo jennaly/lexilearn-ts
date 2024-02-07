@@ -2,7 +2,9 @@ import React, { createContext, useReducer, ReactNode } from "react";
 
 type WordDefinition = {
   definition: string;
+  type?: string;
   image_url?: string;
+  example?: string;
 };
 
 type WordData = {
