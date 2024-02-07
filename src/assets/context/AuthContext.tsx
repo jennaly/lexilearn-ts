@@ -1,32 +1,10 @@
 import React, { createContext, useReducer, useEffect } from "react";
-
-// Types
-type User = {
-  email: {
-    type: String;
-    required: true;
-    unique: true;
-  };
-  password: {
-    type: String;
-    required: true;
-  };
-  name: {
-    type: String;
-    required: true;
-  };
-};
-
-type AuthState = {
-  user: User | null;
-};
-
-type AuthAction = { type: "LOGIN"; payload: User } | { type: "LOGOUT" };
-
-type AuthContextType = {
-  state: AuthState;
-  dispatch: React.Dispatch<AuthAction>;
-};
+import {
+  User,
+  AuthState,
+  AuthAction,
+  AuthContextType,
+} from "../shared/authTypes";
 
 export const AuthContext = createContext<AuthContextType>({
   state: { user: null },
