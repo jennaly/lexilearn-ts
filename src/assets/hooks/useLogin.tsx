@@ -28,10 +28,6 @@ export const useLogin = (): LoginResult => {
 
       const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data.error);
-      }
-
       localStorage.setItem("user", JSON.stringify(data));
 
       // Update auth context
