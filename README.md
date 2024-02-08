@@ -40,6 +40,7 @@ The file names for study sets and teacher's reports will be automatically genera
 
 
 ## Tech Stack
+- Utilizes TypeScript ensure type safety in data handling
 - Uses JSON Web Token (JWT) for user authentication and request authorization
 - Utilizes React and Tailwind for the front-end
 - Handles data storage with MongoDB and localStorage
