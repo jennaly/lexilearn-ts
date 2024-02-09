@@ -18,7 +18,9 @@ type WordDataState = {
   wordData: WordData | null;
 };
 
-type WordDataAction = { type: "GET_WORD_DATA"; payload: WordDataState };
+type WordDataAction =
+  | { type: "GET_WORD_DATA"; payload: WordDataState }
+  | { type: "RESET_WORD_DATA"; payload: {} };
 
 export type WordDataContextType = WordDataState & {
   dataDispatch: React.Dispatch<WordDataAction>;
@@ -36,6 +38,10 @@ export const wordDataContextReducer = (
   switch (action.type) {
     case "GET_WORD_DATA":
       return { ...action.payload };
+    case "RESET_WORD_DATA":
+      return {
+        wordData: null,
+      };
     default:
       return state;
   }
