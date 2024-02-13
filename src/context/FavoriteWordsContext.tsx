@@ -3,7 +3,7 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { User } from "@/shared/authTypes";
 
 export type FavoriteWord = {
-  _id: string;
+  _id?: string;
   term: string;
   definitions: string[];
   difficulty?: number;
