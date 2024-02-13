@@ -62,6 +62,28 @@ const Card = () => {
         definitions: [...definitions],
         difficulty: wordData.difficulty,
       };
+
+      const addWordToDB = async () => {
+        const res = await fetch(
+          "https://lexilearn-server.cyclic.app/api/favoriteWords",
+          {
+            method: "POST",
+            body: JSON.stringify(entry),
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${user?.token}`,
+            },
+          }
+        );
+
+        const data = await res.json();
+
+        if (res.ok) {
+          dispatch({ type: "CREATE_FAVORITE_WORD", payload: data });
+        }
+      };
+
+      addWordToDB();
     } else {
       entry = {
         _id: uuidv1(),
@@ -69,29 +91,9 @@ const Card = () => {
         definitions: [...definitions],
         difficulty: wordData.difficulty,
       };
+
+      dispatch({ type: "CREATE_FAVORITE_WORD", payload: entry });
     }
-
-    const addWordToDB = async () => {
-      const res = await fetch(
-        "https://lexilearn-server.cyclic.app/api/favoriteWords",
-        {
-          method: "POST",
-          body: JSON.stringify(entry),
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${user?.token}`,
-          },
-        }
-      );
-
-      const data = await res.json();
-
-      if (res.ok) {
-        dispatch({ type: "CREATE_FAVORITE_WORD", payload: data });
-      }
-    };
-
-    addWordToDB();
   };
 
   const removeWordFromFavorites = () => {
